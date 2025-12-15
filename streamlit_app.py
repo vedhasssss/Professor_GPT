@@ -7,9 +7,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # 🔐 Configure Gemini API
-api_key = os.getenv("GEMINI_API_KEY")
+# Try Streamlit secrets first (for cloud hosting), then .env file (for local)
+try:
+    api_key = st.secrets["GEMINI_API_KEY"]
+except:
+    api_key = os.getenv("GEMINI_API_KEY")
+
 if not api_key:
-    st.error("⚠️ GEMINI_API_KEY not found! Please create a .env file with your API key.")
+    st.error("⚠️ GEMINI_API_KEY not found! Please add it to Streamlit secrets or create a .env file.")
     st.stop()
 
 genai.configure(api_key=api_key)
