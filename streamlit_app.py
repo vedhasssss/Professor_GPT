@@ -9,6 +9,7 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 
 # UI
 st.title("ProfessorGPT App (Powered by Gemini)")
+st.caption("Developed by Vedhas Shinde")
 st.divider()
 
 prompt = st.text_input("What do you want to learn?")
@@ -25,3 +26,4 @@ if gptbutton and prompt:
 
     st.subheader("ProfessorGPT's Explanation:")
     st.write(response.text)
+
